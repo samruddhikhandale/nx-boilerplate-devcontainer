@@ -25,7 +25,6 @@
   },
 
   "remoteEnv": {
-    "NODE_ENV": "development",
     "NX_VERBOSE_LOGGING": "true",
     "EDITOR": "nano"
   },
