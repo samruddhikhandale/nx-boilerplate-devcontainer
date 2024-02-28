@@ -32,10 +32,8 @@
 
   "postCreateCommand": "bash .devcontainer/postCreate.sh",
   "features": {
-    "docker-in-docker": {
-      "version": "latest",
-      "moby": true
-    }
+	    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+	    }
   },
   "forwardPorts": [3333]
 }
