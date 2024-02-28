@@ -8,6 +8,7 @@ services:
       - "3000:3000"
     environment:
       - NODE_ENV=production
+    command: /bin/sh -c "while sleep 1000; do :; done"
     depends_on:
       - mongodb
       - redis
