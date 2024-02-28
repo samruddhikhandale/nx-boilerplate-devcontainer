@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  devcontainer:
+    image: mcr.microsoft.com/devcontainers/typescript-node:0-18
+    container_name: my-dev-container
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - mongodb
+      - redis
+
+  # MongoDB service
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+
+  # Redis for bull
+  redis:
+    image: redis
+    networks:
+      - redis
+    expose:
+      - 6379
+
+  redis-commander:
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    networks:
+      - redis
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+
+networks:
+  redis:
+
+volumes:
+  mongodb-data:
